@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+   /*
+   有初始化、加工、出厂
+   工厂模式的目的就是为了批量生产对象
+   */
+   function person(name,age,job,sex){
+       let obj=new Object();//初始化
+       //加工
+       obj.name=name;
+       obj.age=age;
+       obj.job=job;
+       obj.sex=sex;
+
+       return obj;
+   }
+   let obj=person('Jack',18,'doctor','man');
+   let obj=person('Bob',20,'police','man');
+   </script> 
+</body>
+</html>

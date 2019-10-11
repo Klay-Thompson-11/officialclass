@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+   /*
+   单例--->单独的实例
+   let obj=new Object()
+
+   高级单例模式：
+   匿名函数自执行+return 对象
+
+   */
+
+
+   let num=10;
+   let obj=(function(){
+       let age=15;
+
+       function fn(a,b){
+           return (a+b);
+       }
+       return{
+           name:'Jack',
+           num2:fn(age,num),
+           fn:fn
+       }
+   })();
+
+
+   let obj2=(function(){
+       let nn=10;
+       function fn(a,b){
+           return(a*b);
+       }
+       return{
+           nn:nn,
+           nn2:obj.fn(num,nn)
+       }
+   })();
+   console.log(obj);
+   console.log(obj);
+
+
+
+
+   //柯里化函数
+   function fn1(x){
+       return function(y){
+           return(x+y);
+       }
+   }
+   let a=fn1(1);
+   let b=a(2);
+   console.log(b);
+   </script> 
+</body>
+</html>

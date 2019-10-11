@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+  document.onclick=function(){
+      console.log(this);//document
+  }
+
+  document.onclick=fn();
+  function fn(){
+      console.log(this);//window
+  }
+  fn();
+
+  document.onclick=fn();
+  function fn(){
+      console.log(this);//window
+  }
+
+  document.onh=fn();
+  console.log(document.onh);
+
+
+  document.onclick=function(){
+      console.log(this);
+      fn();
+  }
+
+  document.onclick=(function(){
+      console.log(this);//window
+      return fn;
+  })()
+
+
+  document.onclick=function(){
+      return fn;
+  }
+  function fn(){
+      console.log(this);
+  }
+
+
+  let obj={
+      fn:fn,
+      aa:{
+          f:{
+              num:1,
+              fn:fn,
+              f:()=>{
+                  console.log(this);
+              }
+          }
+      }
+  }
+  obj.aa.f.fn();
+  obj.aaa.f.f();
+
+
+  document.onclick=function(){
+      let fn=()=>{
+          console.log(this);
+      }
+      fn();
+  }
+
+  
+  document.onclick=()=>{
+      console.log(this);
+  }
+
+
+  </script>  
+</body>
+</html>

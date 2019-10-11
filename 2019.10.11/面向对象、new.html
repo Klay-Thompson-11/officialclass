@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+    面向对象（Object Oriented，OO）：是一种对现实世界理解和抽象的方法，是计算机编程技术发展到一定阶段后的产物。
+
+    面向对象是一种编程思想，就是把相同部分的代码抽离出来归为一类，把描述这个类的共有特征（方法或者属性）挂在类的原型下的一种编程思想（方式、模式）
+
+    类的首字母大写
+    */
+
+    //person这个函数类（构造函数）
+    function Person(name,age,sex,job){
+        //抽象
+        //let obj={}
+        this.name=name;
+        this.age=age;
+        this.sex=sex;
+        this.job=job;
+        this.say=function(){
+            alert('我叫'+this.name);
+        }
+    }
+    let obj=new Person('Jack',19,'man','doctor');
+    let obj2=new Person('Bob',20,'man','police');
+
+    let ary=[];
+    let ary2=[];
+    console.log(ary.push===ary2.push);
+
+
+
+    /*
+    new 
+    一元运算符，专门运算函数的，能让函数不加括号的情况下执行，加括号是为了传参
+    1.构造函数中的this就是这个构造函数的实例化对象，默认的this也是实例化对象
+    2.return返回值如果是简单类型，那么返回的结果为实例化对象，如果返回值如果为引用类型，那么返回结果就是这个引用类型
+    */
+
+    function Fn(t){
+        alert(t);
+        console.log(this);
+        return null;
+    }
+
+    let f =new Fn('1234');
+    console.log(f);
+    console.log(Fn);
+    </script>
+</body>
+</html>
