@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        new:
+            函数内的this变成了实例
+            默认return实例
+    */
+        function myNew(fn, ...arg) {
+            let obj = {}; //Object.create({})
+            //构造函数的原型 === 实例的原型链
+            obj.__proto__ = fn.prototype; //Object
+            let reValue = fn.call(obj, ...arg);
+            // console.log(reValue);
+            if (isReferenceType(reValue)) {
+                return reValue;
+            } else {
+                return obj;
+            }
+
+            /*if(reValue !== undefined && reValue !== null){
+                reValue.ha = 1;
+                console.log(reValue.ha === undefined);//如果ha是个undefined说明它是简单类型
+                if(reValue.ha === undefined){
+                    return obj;
+                }else{
+                    return reValue;
+                }
+            }else{
+                return obj;
+            }*/
+
+            //如果构造函数return的不是引用类型默认就为实例
+            // if(!reValue){
+            //     return obj;
+            // }else{
+            // 如果构造函数return的是引用类型返回的就是构造函数return的引用类型
+            //     return reValue;
+            // }
+        }
+
+        function Fn(name, age) {
+            // console.log(this);
+            this.name = name;
+            this.age = age;
+        }
+
+        let f = myNew(Fn, 'Jack', 20);
+        console.log(f);
+        // console.log(f.__proto__);//Fn.prototype
+
+        function isReferenceType(data) {
+            //如果data是symbol那么直接返回false;
+            if (typeof data === 'symbol') return false;
+            let ary = ['String', 'Number', 'Null', 'Undefined', 'Boolean'];
+            let toString = Object.prototype.toString;
+            let rv = ary.some(item => toString.call(data) === '[object ' + item + ']');
+            //不是预留的简单类型就是引用类型
+            if (!rv) {
+                return true;
+            }
+            return false;
+        }
+        // console.log(isReferenceType(1));
+    </script>
+</body>
+
+</html>
