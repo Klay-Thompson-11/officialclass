@@ -12,7 +12,7 @@
         }
 
         .active {
-            background:gray;
+            background: gray;
             ;
         }
 
@@ -61,7 +61,7 @@
         <div>文本3</div>
     </div>
     <script>
-    /*
+        /*
      一般面向对象都是属性挂在类里面，方法挂在类的原型下
      1.抽象
      2.挂功能方法
@@ -74,18 +74,18 @@
             this.timer = null;
             this.num = 0;
         }
-          
+
         //循环事件，触发事件  
         Tab.prototype.events = function (evName) {
             //this
-            let that = this;//实例
+            let that = this; //实例
             this.btns.forEach((ele, i) => {
                 ele[evName] = function () {
                     that.change(i);
                 }
             });
         }
-        
+
         //切换
         Tab.prototype.change = function (i) {
             //大清洗
