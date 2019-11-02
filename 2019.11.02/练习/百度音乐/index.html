@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body,
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="baidu.css" />
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="baidu">
+			<ul id="list">
+				<li>
+					<input type="checkbox">
+					<span>泡沫</span>
+					<span>邓紫棋</span>
+				</li>
+				<li>
+					<input type="checkbox">
+					<span>说爱你</span>
+					<span>蔡依林</span>
+				</li>
+				<li>
+					<input type="checkbox">
+					<span>稻香</span>
+					<span>周杰伦</span>
+				</li>
+				<li>
+					<input type="checkbox">
+					<span>我的梦</span>
+					<span>张靓颖</span>
+				</li>
+				<li>
+					<input type="checkbox">
+					<span>怎么说我不爱你</span>
+					<span>萧敬腾</span>
+				</li>
+				<li>
+					<input type="checkbox">
+					<span>无处安放</span>
+					<span>白若溪</span>
+				</li>
+			</ul>
+			<div class="select">
+				<input type='checkbox' class="selectAll"><span>全选</span>
+				<div class="others">
+					<span><em></em>收藏</span>
+					<span><em></em>添加</span>
+					<span><em></em>删除</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		let list = document.querySelector('#list');
+		let lis = document.querySelectorAll('#list li');
+		let input = document.querySelectorAll('#list input');
+		let selectAll = document.querySelector('.select').getElementsByTagName('input')[0];
+
+		selectAll.onOff = true;
+		let colorAry = ['grey','pink'];
+		let allNum = 0;
+		for (let i = 0; i < lis.length; i++) {
+			lis[i].index = i;
+			lis[i].onOff = true;
+			lis[i].style.background = colorAry[i % colorAry.length];
+
+			lis[i].onmouseover = function () {
+				if(this.onOff){
+					this.style.background = 'skyblue';
+				}	
+			}
+			lis[i].onmouseout = function () {
+				if(this.onOff){
+					this.style.background = colorAry[i % colorAry.length];
+				}
+				
+			}
+
+			lis[i].onclick = function () {
+				if (this.onOff) {
+					this.className = 'on';
+					input[this.index].checked = 'checked';
+					lis[i].style.background = 'skyblue';
+					allNum++;
+				} else {
+					this.className = '';
+					input[this.index].checked = '';
+					lis[i].style.background = colorAry[i % colorAry.length];
+					allNum--;
+				}
+				this.onOff = !this.onOff;
+				if (allNum == input.length) {
+					selectAll.checked = 'checked';
+				} else {
+					selectAll.checked = '';
+				}
+			}
+		}
+
+		selectAll.onclick = function () {
+
+			if (selectAll.onOff) {
+				for (let i = 0; i < lis.length; i++) {
+					lis[i].className = 'on';
+					input[i].checked = 'checked';
+					lis[i].onOff = false;
+					lis[i].style.background = 'skyblue';
+				}
+			} else {
+				for (let i = 0; i < lis.length; i++) {
+					lis[i].className = '';
+					input[i].checked = '';
+					lis[i].onOff = true;
+					lis[i].style.background = colorAry[i % colorAry.length];
+				}
+			}
+			selectAll.onOff = !selectAll.onOff;
+		}
+	</script>
+</body>
+
+</html>

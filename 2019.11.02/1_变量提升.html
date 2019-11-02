@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量提升</title>
+</head>
+<body>
+<script>
+ 
+    /*
+        预解析:
+            看var和函数
+    */
+
+    alert(a);  //function a(){}
+    var a = 10;
+    function a(){
+        var b = 30;
+        alert(5);
+    }
+    alert(a);//10
+    a = 30;
+    alert(a);//30
+    var a = function (){
+        alert(333);
+    } 
+    function a(){}
+    a();// 333
+    alert(a);// function (){alert(333);} 
+
+    /*
+            形参赋值
+            变量提升
+            执行上下文
+            执行栈销毁
+    */
+    function a(){
+        alert(1);
+    }
+    a(); //333
+    var a = function (){alert(a);}
+    alert(a);//function (){alert(a);}
+    var a = 30;
+    alert(a);//30
+    var b = function(a){
+        var a = 50;
+        alert(a);
+    }
+    b(a);//50
+    alert(a);//30
+    function a(){
+        alert(333);
+    }
+    alert(a);//30
+    
+</script>
+</body>
+</html>

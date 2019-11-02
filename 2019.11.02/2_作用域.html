@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    var b = 20;  //全局变量对象(window)  window.b 
+    alert(a); //报错
+    alert(1);
+</script> 
+<script>
+    // alert(b);//20
+    console.log(window);
+    var a = 10;
+    function a(){}
+</script>
+
+<script>
+
+    //一点见解
+/*
+1大环境的预解析，解析出变量
+2函数调用同名变量，进入函数体 ，无论怎样 函数体第一步永远是形参赋值，外部传入的变量永远处在pk环节第一位（最上面）
+3接下来就是函数体内的预解析，pk环节一定处在外部变量下面 但凡函数体预解析出现pk值高于外部传入的变量（函数的覆盖），一定是函数体变量取胜，否则使用的就是外部变量 
+即解释了函数体内有函数 一定大于外部函数
+
+*/
+</script>
+
+
+</body>
+</html>

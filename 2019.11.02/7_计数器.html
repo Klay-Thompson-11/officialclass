@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计数器</title>
+</head>
+<body>
+    <button id="btn">0</button>
+<script>    
+    btn.onclick = (function(){
+        var i = 0;
+        return function(){
+            btn.innerHTML = ++i;
+        }
+    })();
+</script>
+</body>
+</html>
