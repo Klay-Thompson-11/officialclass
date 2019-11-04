@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /*
+        工厂模式为了批量***生产实例
+        函数的目的就是为了复用
+    */
+
+    /*描述具体的事务*/
+    // let obj = {
+    //     name:'abc',
+    //     age:10
+    // } 
+
+    // let obj2 = {
+    //     name:'efg',
+    //     age:5
+    // }
+
+    // let obj3 = {
+    //     name:'hij',
+    //     age:2
+    // }
+
+
+    function fn(name,age){
+        let obj = {};  //原材料
+        obj.name = name;
+        obj.age = age;    
+        //加工
+        return obj; //出厂
+    }
+    let obj = fn('klm',10);
+    console.log(obj);   
+
+</script>
+</body>
+</html>
