@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+
+   function add(){
+        var num = 0;
+        num += 1;
+        // console.log(num)
+    }
+
+    var num = 0;
+    function add(){
+        num += 1;
+        console.log(num)
+    }
+
+    function add1(){
+        var num = 0;
+        return function(){
+            num += 1;
+            console.log(num)
+        }
+    }
+    let add = add1();
+    add();//1
+    add()//2
+    add()//3
+
+
+
+
+var name = "The Window"; //window.name = 'The Window'
+var object = {
+    name : "My Object",  //obj.name = 'My Object'
+    getNameFunc : function(){
+        //this -> obj
+        return function(){
+            return this.name;
+        }
+    }
+};
+
+let oo = object.getNameFunc();
+console.log(oo())
+
+alert(object.getNameFunc()());
+   </script> 
+</body>
+</html>
