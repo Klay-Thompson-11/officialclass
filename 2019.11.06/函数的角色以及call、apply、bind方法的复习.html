@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        函数:
+            1.普通函数
+                运行函数中的代码，为了复用
+            2.构造函数(class)
+                this实例
+                默认return 实例
+                在类里面一般都是添加属性
+
+
+                原型和原型链:
+                    函数走原型  （构造函数的实例）
+                    实例走链 （实例找不到某个属性或者方法就走链）
+                    实例的原型链 === 构造函数的原型
+                    obj.__proto__ -> Fn.prototype -> Fn.prototype.__proto__ -> Object.prototype
+                实例
+                    new 构造函数   new Function -> function
+    */
+
+      /*
+
+    call、apply、bind 的回顾
+
+        call(that,多个)
+        apply(that,两个)
+        bind(that,多个)
+
+        共同特点都是，第一个参数都是改变this指向的，函数天生自带的
+        注意点：null，undefined（无效的）传了都是window
+        1.this是实例
+        2.默认return 实例，如果return为引用类型就为引用类型
+        3.实例的原型链 === 构造函数的原型
+        4.可以不加括号调用
+    */
+</script>
+</body>
+</html>
