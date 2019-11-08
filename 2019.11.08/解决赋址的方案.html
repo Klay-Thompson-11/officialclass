@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        Object.assign  浅拷贝
+        Object.assign(obj2,obj1,obj0)
+        从右往左浅拷贝对象的属性,可以放若干对象
+        最后改变的是obj2，obj1是不会被修改的
+    */
+
+
+    let obj = {
+        name:'aa',
+        age:10
+    }
+    let obj2 = {
+        sex:'man',
+        name:'bb',
+        age:25
+    }
+    let obj3 = {
+        cc:8
+    }
+    //把obj3,obj2,obj的内容赋值到{}中
+    let obj4 = Object.assign({},obj3,obj2,obj); //越往右边层级越高
+    console.log(obj4);
+
+
+    let prototype1 = {
+        say(){ console.log('My name is ...');}
+    }   
+    let prototype2 = {} 
+    prototype2 = prototype1; //赋址关系
+
+
+    for(let attr in prototype1){
+        //for in会枚举当前对象原型下的属性或者方法，使用hasOwnProperty就能只找对象自身的属性了
+        if(prototype1.hasOwnProperty(attr)){
+            prototype2[attr] = prototype1[attr];
+        }
+    }
+
+    //浅拷贝
+    Object.assign(prototype2,prototype1);
+
+    prototype2.say =  function(){
+        console.log("aaa")
+    }
+    console.log(prototype2)
+    prototype1.say();
+    prototype2.say();
+
+
+
+    /*
+    赋值引用类型的目的是B拿到A下面的属性
+
+    如何避免赋址:
+            1.需要2个不同地址
+            2.B地址下拥有A地址下的原始类型的数据即可（原始类型的赋值）
+
+
+    */
+    
+ 
+    let ary = [1,2,3,[1,2,3,{name:[1,2,3]}]];
+    //深度克隆
+    function deepClone(obj){
+        //看看obj是不是一个对象，不是对象就不执行deepclone
+        if(typeof obj !== 'object' && obj !== null)return null;
+        let o = obj.push?[]:{}; //确认传进来的值到底是数组还是对象
+        for(let attr in obj){
+            //如果碰到了引用类型就继续循环，原始类型才赋值
+            if(typeof obj[attr] === 'object'){
+                o[attr] = deepClone(obj[attr]);
+            }else{
+                o[attr] = obj[attr];
+            }
+        }
+        return o;
+    }
+    let ary2 = deepClone(ary);
+    console.log(ary2);
+
+</script>
+</body>
+</html>

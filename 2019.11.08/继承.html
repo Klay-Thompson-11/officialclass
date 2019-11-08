@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+   面向对象特征：封装、继承、多态
+   继承：子类具有父类的一部分特征
+   */
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // Person.prototype.say = function () {
+        //     alert("My name is " + this.name);
+        // }
+        // let p1 = new Person("Jack", 22);
+
+        // function Police(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.job = "police";
+        // }
+        // Police.prototype.say = function () {
+        //     alert("My name is " + this.name);
+        // }
+        // Police.prototype.kongfu = function () {
+        //     alert(this.name + " **赵某");
+        // }
+        // let p2 = new Police("Bob", 34);
+        // p2.say();
+        // p2.kongfu();
+
+
+
+        /*
+        继承方式：
+        类式继承（call继承）
+        原型继承
+        寄生式组合继承
+        拷贝继承
+        对象继承
+        class继承
+
+        继承最后结果是能够继承父类的属性和方法
+
+        继承属性:
+         调用父类，通过call把this变为子类的实例即可(call继承)
+        function Police (name,age){
+             //this -> 实例
+             Person.call(this,name,age);
+               console.log(this);
+              }
+                    
+
+        方法继承:
+            通过浅拷贝，把父类上原型的方法或者属性都赋值给子类的原型
+            Object.assigin(子类.prototype,父类.prototype)
+
+        */
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        Person.prototype.say = function () {
+            alert("My name is " + this.name);
+        }
+
+        function Police(name, age) {
+            Person.call(this, name, age);
+        }
+        Object.assign(Police.prototype, Person.prototype);
+
+        Police.prototype.say = function () {
+            alert("I'm a police");
+        }
+        let p2 = new Police("Jack", 34);
+        let p = new Police("Bob", 32);
+        p2.say();
+        p.say();
+
+
+
+        //原型继承
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.say = function () {
+            alert("My name is " + this.name);
+        }
+
+        function Police(name, age) {
+            Person.call(this, name, age);
+        }
+
+        Police.prototype = new Person;
+        Police.prototype.constructor = Police;
+        Police.prototype.kongfu = function () {
+            console.log(this.name + " **赵某");
+        }
+
+        let p2 = new Police('Jack', 23);
+        let p1 = new Person('Bob', 19);
+        console.log(p2.constructor);
+
+
+
+        //寄生式组合
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.say = function () {
+            alert("My name is " + this.name);
+        }
+
+        function Police(name, age) {
+            Person.call(this, name, age);
+        }
+        Police.prototype = Object.create(Person.prototype); //寄生式组合
+        Police.prototype.say = function () {
+            alert("I'm a police " + this.name);
+        }
+
+        let p2 = new Police('Jack', 23);
+        let p1 = new Person('Bob', 19);
+        p2.say();
+        p1.say();
+
+
+        //class 继承
+        /*
+        通过class中的static 可以创建静态方法，只有类才能调用，实例是调用不到的
+        就算是继承，也只能是继承子类去调用，子类的实例是调用不到的
+    */
+        class Person {
+            static eat() { //静态方法。只有类才能调用，实例是调用不到的
+                console.log('eat');
+            }
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            say() {
+                alert("My name is " + this.name);
+            }
+        }
+
+        class Police extends Person {
+            //在继承的constructor中，如果要使用this，一定要写super
+            constructor(job, ...arg) { //剩余运算符 
+                //super的上面是拿不到this的
+                super(...arg); //扩展运算符
+                this.job = job;
+            }
+            say() {
+                console.log("I'm a police");
+            }
+        }
+        let p2 = new Police('police', 'Jack', 29);
+        let p1 = new Person('Bob', 18);
+    </script>
+</body>
+
+</html>
