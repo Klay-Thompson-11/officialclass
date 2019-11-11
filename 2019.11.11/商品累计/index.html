@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body,
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="price.css" />
+</head>
+
+<body onselectstart="return false;">
+	<div class="wrap">
+		<div class="box">
+			<ul class="list">
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong id="unitPrice">12.5元 </strong> 小计：<strong id="subtotal">0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong id="unitPrice">10.5元 </strong> 小计：<strong id="subtotal">0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong id="unitPrice">8.5元 </strong> 小计：<strong id="subtotal">0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong id="unitPrice">8元 </strong> 小计：<strong id="subtotal">0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong id="unitPrice">14.5元 </strong> 小计：<strong id="subtotal">0元</strong>
+					</span>
+				</li>
+			</ul>
+			<div class="info">
+				<span>商品共合计：<em id="totalnum">0</em>件</span>
+				<span>共花费了：<em id="totalpay">0</em>元</span>
+				<br />
+				<br />
+				<span>其中最贵的商品单价是：<em id="max">0</em>元</span>
+			</div>
+		</div>
+	</div>
+	<script>
+		let list = document.getElementsByClassName('list')[0];
+		let decAdd = document.getElementsByTagName('i');
+		let num = list.getElementsByTagName('em');
+		let unitPrice = document.querySelectorAll('#unitPrice');
+		let subtotal = document.querySelectorAll('#subtotal');
+		let max = document.getElementById('max');
+		let totalnum = document.getElementById('totalnum');
+		let totalpay = document.getElementById('totalpay');
+		let x = 0;
+		for (let i = 0; i < 5; i++) {
+			fn(i);
+		}
+
+		function fn(n) {
+			let m = 0;
+			decAdd[2 * n].onclick = function () {
+				m--;
+				m < 0 ? m = 0 : null, num[n].innerHTML = m;
+				subtotal[n].innerHTML = m * parseFloat(unitPrice[n].innerHTML)+'元';
+				totalnum.innerHTML = Number(num[0].innerHTML) + Number(num[1].innerHTML) + Number(num[2].innerHTML) +Number(num[3].innerHTML) + Number(num[4].innerHTML);
+				totalpay.innerHTML = parseFloat(subtotal[0].innerHTML) + parseFloat(subtotal[1].innerHTML) + parseFloat(subtotal[2].innerHTML) + parseFloat(subtotal[3].innerHTML) + parseFloat(subtotal[4].innerHTML);
+				fn2();
+			}
+			decAdd[2 * n + 1].onclick = function () {
+				m++;
+				num[n].innerHTML = m;
+				subtotal[n].innerHTML = m * parseFloat(unitPrice[n].innerHTML) + '元';
+				totalnum.innerHTML = Number(num[0].innerHTML) + Number(num[1].innerHTML) + Number(num[2].innerHTML) +Number(num[3].innerHTML) + Number(num[4].innerHTML);
+				totalpay.innerHTML = parseFloat(subtotal[0].innerHTML) + parseFloat(subtotal[1].innerHTML) + parseFloat(subtotal[2].innerHTML) + parseFloat(subtotal[3].innerHTML) + parseFloat(subtotal[4].innerHTML);
+				fn2();
+			}
+		}
+
+		function fn2() {
+			if (num[4].innerHTML > 0) {
+				max.innerHTML = 14.5;
+			} else if (num[0].innerHTML > 0) {
+				max.innerHTML = 12.5;
+			} else if (num[1].innerHTML > 0) {
+				max.innerHTML = 10.5;
+			} else if (num[2].innerHTML > 0) {
+				max.innerHTML = 8.5;
+			} else if (num[3].innerHTML > 0) {
+				max.innerHTML = 8;
+			} else {
+				max.innerHTML = 0;
+			}
+		}
+	</script>
+</body>
+
+</html>
