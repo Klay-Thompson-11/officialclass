@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>商品排序</title>
 <link rel="stylesheet" href="./css/1.css">
 </head>
 <body>
@@ -24,37 +24,24 @@
                 <i class="down"></i>
                 价格
             </a>
-            <div>
-                <select name="" id="sele">
-                    <option value="hot">按照热度搜索</option>
-                    <option value="price">按照价格搜索</option>
-                    <option value="title">按照文字搜索</option>
-                </select>
-                <input type="text">
-                <button id="search">搜索</button>
-            </div>
         </nav>
         <ul class="list" id="ul">
-        </ul>
-       
+        </ul>   
    </section>
 <script>
-
     fetch('./json/product.json')
     .then(d=>d.json())
     .then(data=>{
-    
         let newdata = data.concat(); 
         function render(newdata){
-            
             let lis = newdata.map(({title,img,price,time,hot},i)=>{
                 return (
                 `<li>
-                    <img src="${img}" alt="">
-                    <p title="${title}">商品名称:<span>${title.substr(0,6)}</span></p>
+                    <img src="${img}">
+                    <p title="${title}">商品名称:<span>${title.substr(0,5)}</span></p>
                     <p>上架时间:<span>${time}</span></p>
                     <p>商品热度:<span>${hot}</span></p>
-                    <p>商品价格::<span>${price}</span></p>
+                    <p>商品价格:<span>${price}</span></p>
                 </li>`
                 );
             }).join('');
