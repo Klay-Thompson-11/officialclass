@@ -9,6 +9,7 @@
    <section class="box">
         <nav>
             <span>排序</span>
+            
             <a href="javascript:void(0);" data-name="time">
                 <i class="up"></i>
                 <i class="down"></i>
@@ -53,6 +54,8 @@
     as.forEach((ele,i)=>{
         ele.onoff = true; 
         ele.onclick = function(){
+            console.log(this.dataset.name );
+            
             if(this.onoff){
                 newdata.sort((a,b)=>{
                     if(this.dataset.name === 'time'){
