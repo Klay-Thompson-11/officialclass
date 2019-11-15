@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div{
+    padding:100px;
+}
+#box{
+    background: red;
+    position: relative;
+}
+#box1{
+    background: green;
+    position: relative;
+    border:10px solid #000;
+}
+#box2{
+    background: skyblue;
+    position: absolute;
+    top:100px;
+    border:10px solid #000;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <div id="box1">
+            <div id="box2"></div>
+        </div>
+    </div>
+<script>
+    /*
+        offsetLeft/offsetTop在实际中(页面复杂的情况下，要慎用，获取的距离是根据定位父级来的)
+        绝对位置才是最稳的一个距离（当前元素到页面顶部的距离）
+        思路:
+            求得绝对位置，就是把当前元素的所有祖先节点的距离计算一遍，求和即可
+        具体实施:
+            1.先定义一个元素（作为当前元素）
+            2.先求当前元素的距离（包含定位距离和边框距离）
+            3.把这次的定位父级变成下一次循环的当前
+    */
+
+    class Tools {
+        position(nowElement){
+            let left = 0;
+            let Top = 0;
+            let clientleft = nowElement.clientLeft;
+            let clienttop = nowElement.clientTop;
+            //只要有当前这个元素就一直循环
+            while(nowElement){
+                left += (nowElement.offsetLeft + nowElement.clientLeft);
+                Top += (nowElement.offsetTop + nowElement.clientTop);
+                nowElement = nowElement.offsetParent; //把本次的定位父级变成，下次循环的当前元素。
+            }
+            left = left - clientleft;
+            Top = Top - clienttop;
+            return {
+                left,Top
+            }
+        }
+    }
+    let t1 = new Tools;
+    let {left,Top} = t1.position(box2);
+    console.log(left,Top);//218 218
+</script>    
+</body>
+</html>

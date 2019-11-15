@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = '10000000';
+
+        let temp = '';
+        let num = 0;
+        for (let i = str.length - 1; i >= 0; i--) {
+            if ((temp.length - num) % 3) {
+                temp += str[i];
+            } else {
+                console.log(str[i]);//'0' '0' '0'
+                temp += ',' + str[i];
+                num++;
+            }
+        }
+        console.log(temp);//',000,000,01'
+        temp = temp[0] === ',' ? temp.substring(1) : temp;
+        temp = temp.substring(1);
+        temp = temp.split('').reverse().join('');
+        console.log(temp);//'10,000,00'
+
+
+
+
+        console.log(/\d(?=\d{3})/.exec(str));
+        //["1", index: 0, input: "10000000", groups: undefined]
+
+        console.log(str.match(/(\d)(?=\d{3})+/g));
+        //["1", "0", "0", "0", "0"]
+
+        console.log(str.replace(/(\d)(?=(\d{3})+$)/g, '$1,'));
+        //'10,000,000'
+
+        console.log(str.replace(/(\d)((?=(\d{3})+$))/g, function ($0, $1, $2, $3) {
+            console.log($3); //'000' '000'
+
+        })); //'1undefined00undefined000'
+    </script>
+</body>
+
+</html>

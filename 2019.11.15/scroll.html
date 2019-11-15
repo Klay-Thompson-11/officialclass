@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#txt{
+    width:100px;
+    height:50px;
+    border:1px solid #000;
+}
+</style>
+</head>
+<body style="height:3000px;width:5000px;">
+    <!-- <textarea id="txt"></textarea> -->
+    <div id="txt">
+        qwertyuiopasdfghjklzxcvbnm
+        mnbvcxzlkjhgfdsapoiuytrewq
+        poiuytrewqlkjhgfdsamnbvcxz
+        asdfghjklzxcvbnmpoiuytrewq
+        qwertyuioplkjhgfdsamnbvcxz
+    </div>
+    <button id="btn">获取txt的高度</button>
+<script>
+    btn.onclick = function(){
+        console.log(txt.clientHeight);//50
+        console.log(txt.offsetHeight);//52
+        console.log(txt.scrollHeight);//105
+        //被内容撑开的高度,不算边框的
+    }
+    document.onclick=function(){
+        console.log(document.documentElement.scrollTop);//2375
+        //滚动条的距离
+    }
+</script>
+</body>
+</html>
