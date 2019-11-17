@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+         let obj = {
+            name:'小明',
+            age:18,
+            say:'好好学习，天天向上'
+        } 
+        let str = '我的名字叫${name},年龄是${age}岁,我想说:${say}';
+
+        // let i=0;
+        // let ary=['一','二','三'];
+        let s=str.replace(/\${(\w+)}/g,(...arg)=>{
+            console.log(arg);
+            //["${name}", "name", 5, "我的名字叫${name},年龄是${age}岁,我想说:${say}"]
+            //["${age}", "age", 16, "我的名字叫${name},年龄是${age}岁,我想说:${say}"]
+            // ["${say}", "say", 28, "我的名字叫${name},年龄是${age}岁,我想说:${say}"]
+            let [,key]=arg;
+            return obj[key];
+            // return ary[i++]; //'我的名字叫一,年龄是二岁,我想说:三 '
+        });
+        console.log(s);//'我的名字叫小明,年龄是18岁,我想说:好好学习，天天向上'
+
+
+        let str2 = 'hdd82nxa89a3axdma2naejaaxaa8n2xdanja2cah2hnadhioamwajexnad8mdahiodn';
+
+        let obj={};
+        let num = 0;
+        let key = '';
+        let ary=[];
+
+        for(let i=0;i<str2.length;i++){
+            if(!ary.includes(str2[i])){
+                let re=new RegExp(str2[i],'g');
+                let len=str2.match(re).length;
+                obj[len]=str2[i];
+                ary.push(str2[i]);
+            }else{
+                continue;
+            }
+        }
+        console.log(ary);
+        ["h", "d", "8", "2", "n", "x", "a", "9", "3", "m", "e", "j", "c", "i", "o", "w"]
+
+
+        let keys=Object.keys(obj);
+        //拿出对象的key值，是个数组
+        let vals=Object.values(obj);
+        //拿出对象的value值，是个数组
+
+        console.log(keys[keys.lenngth-1],vals[vals.length-1]);//undefined "a"
+
+        //正则
+        let str2 = 'hdd82nxa89a3axdma2naejaaxaa8n2xdanja2cah2hnadhioamwajexnad8mdahiodn';
+        let num = 0;
+        let key = '';
+        str2 = str2.split('').sort().join('');
+        str2.replace(/([\da-z])\1+/g, ($0, $1) => {
+            console.log($0, $1);
+            //22222 2
+            //8888 8
+            //aaaaaaaaaaaaaaaaa a
+            //dddddddd d
+            //ee e
+            //hhhhh h
+            //ii i
+            //jjj j
+            //mmm m
+            //nnnnnnn n
+            //oo o
+            //xxxxx x
+            if ($0.length > num) {
+                num = $0.length;
+                key = $1;
+            }
+        })
+        console.log(`${key}出现次数最多，出现了${num}次`);//a出现次数最多，出现了17次
+        console.log(str2);
+        //22222388889aaaaaaaaaaaaaaaaacddddddddeehhhhhiijjjmmmnnnnnnnoowxxxxx
+
+
+        
+        let str2 = 'hdd82nxa89a3axdma2naejaaxaa8n2xdanja2cah2hnadhioamwajexnad8mdahiodn';
+        let obj={};
+        for (let i = 0; i < str2.length; i++) {
+            if (!obj[str2[i]]) {
+                obj[str2[i]] = 1;
+            } else {
+                obj[str2[i]] += 1;
+            }
+        }
+        let max = -Infinity;
+        let key = '';
+        for (let attr in obj) {
+            if (obj[attr] > max) { 
+                max = obj[attr];
+                key = attr;
+            }
+        }
+        console.log(`${key}出现的次数最多，出现了${max}次`);//a出现的次数最多，出现了17次
+    </script>
+</body>
+
+</html>
