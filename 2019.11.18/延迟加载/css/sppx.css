@@ -1,0 +1,36 @@
+.fl {
+  float: left;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.box {
+  width: 1040px;
+  margin: 0 auto;
+}
+.list {
+  margin-top: 20px;
+  list-style: none;
+  padding-left: 40px;
+  box-sizing: border-box;
+}
+.list li {
+  padding: 20px;
+  width: 190px;
+  height: 304px;
+  float: left;
+  margin: 10px;
+  box-shadow: 0.5px 1px 5px gray;
+  border-radius: 10%;
+}
+.list li img {
+  width: 200px;
+}
+.list li p {
+  line-height: 24px;
+  margin: 0 auto;
+}
+.list li p span {
+  margin-left: 20px;
+}

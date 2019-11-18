@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+   //forEach
+    let ary = [1,1,2,3,4];
+    Array.prototype.myForEach = function (callback,that){
+        for(let i=0;i<this.length;i++){
+            callback.call(that,this[i],i,this);
+        }
+    }
+
+   //map
+    Array.prototype.myMap = function(callback,that){
+        let ary = [];
+        for(let i=0;i<this.length;i++){
+            ary.push(callback.call(that,this[i],i,this));
+        }
+        return ary;
+    }
+
+</script>
+</body>
+</html>
