@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div{
+    padding:100px;
+}
+#box{
+    background: red;;
+}
+#box1{
+    background:slateblue;
+}
+#box2{
+    background:teal;
+}
+#btn{
+    background:tomato;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <div id="box1">
+            <div id="box2">
+                <button id="btn">按钮</button>
+            </div>
+        </div>
+    </div>
+<script>
+
+
+/*
+从捕获到目标到冒泡的整个过程就叫事件流（事件模型）
+三个阶段（第一个阶段：捕获）（第二个阶段：目标）（第三个阶段：冒泡）
+**目标阶段**使用事件绑定的方式，执行顺序是按照绑定的先后顺序来的（而不是按照先捕获再冒泡的顺序来的）
+*/
+    box.addEventListener('click',function(){
+        alert('box_冒泡');
+    },false);
+    box.addEventListener('click',function(){
+        alert('box_捕获');
+    },true);
+
+
+    box1.addEventListener('click',function(){
+        alert('box1');
+    },false);
+    box2.addEventListener('click',function(){
+        alert('box2');
+    },false);
+
+    
+    btn.addEventListener('click',function(){
+        alert('btn_冒泡');
+    },false);
+    btn.addEventListener('click',function(){
+        alert('btn_捕获');
+    },true);
+
+   
+    box1.addEventListener('click',function(){
+        alert('box1');
+    },true);
+    box2.addEventListener('click',function(){
+        alert('box2');
+    },true);
+    
+    
+</script>
+</body>
+</html>

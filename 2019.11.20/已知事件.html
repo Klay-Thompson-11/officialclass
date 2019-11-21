@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <select name="" id="sele">
+        <option value="">上海</option>
+        <option value="">北京</option>
+        <option value="">重庆</option>
+        <option value="">天津</option>
+    </select>
+
+    <input 
+        type="text" 
+        id="txt"
+        maxlength="10"
+    ><span id="span">0</span>/10字
+    <input type="file" name="" id="f">
+<script>
+   
+    sele.onchange = function(){
+        console.log(1)
+    }//输入框改变之后失焦触发(select改变value值也会触发)
+
+    txt.oninput = function(){
+        console.log(2);
+        span.innerText = this.value.length;
+    }//输入内容的时候触发
+
+    txt.onblur = function(){
+        console.log(3);
+        span.innerText = this.value.length;
+    }//失焦**表单元素**
+
+    txt.onfocus = function(){
+        console.log(4);
+    }//聚焦**表单元素**
+
+ 
+
+</script>
+</body>
+</html>

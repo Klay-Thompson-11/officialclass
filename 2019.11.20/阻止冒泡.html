@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height:100px;
+    background: tomato;
+    display: none;
+}
+</style>
+</head>
+<body>
+    <button id="btn">显示</button>
+    <div id="box"></div>
+<script>
+    btn.onclick = function(ev){
+        box.style.display = 'block';
+       // ev.stopPropagation();//它是标准，但是低版本浏览器不兼容
+        ev.cancelBubble = true;//给目标事件添加，阻止冒泡，它不是标准，但是所有浏览器都兼容
+    }
+    window.onclick = function(){
+        box.style.display = 'none';
+    }
+
+    //当触发某个元素事件的时候，如果祖先级节点绑定的事件和触发的事件一致，那么会依次执行
+</script>
+</body>
+</html>
