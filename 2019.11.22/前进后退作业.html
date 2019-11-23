@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:150px;
+    height:150px;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.box2{
+    width:5px;
+    height:5px;
+    background:seagreen;
+    border-radius: 50%;
+    position: absolute;
+    top:0px;
+    left:22px;
+    transition: 1s;
+}
+img{
+    width:150px;
+    height:150px;
+    opacity:0.8;
+    border-radius:50%;
+}
+</style>
+</head>
+<body>
+    <div id="box"><img src="2.png" alt="">
+        <div id="box2"></div>
+    </div>
+<script>
+
+    /*
+    event   window.event chrome 默认为undefined，IE默认为null
+
+    var e=window.event||ev;
+    ev.target 事件触发时的标签
+    ev.pageY 基于整个页面（要人为计算滚动距离）包括滚动条
+    ev.clientY 基于可视区（不管滚动条如何滚动，左上方都是(0,0)点）
+    */
+   
+    let timer;
+    let e = 0;
+    let obj = {}
+
+    document.onkeydown = function(ev){
+        e = ev.keyCode;
+        obj[e] = true;
+        if(!timer){
+            timer = setInterval(fn,16.7);
+        }
+    }
+
+    let fn = ()=>{
+        if(obj['87']){
+            box.style.top = box.offsetTop - 5 + 'px';
+        }
+        if(obj['83']){
+            box.style.top = box.offsetTop + 5 + 'px';
+        }
+        if(obj['65']){
+            box.style.left = box.offsetLeft - 5 + 'px';
+        }
+        if(obj['68']){
+            box.style.left = box.offsetLeft + 5 + 'px';
+        }
+       
+    }
+
+    timer = setInterval(fn,16.7);
+
+    document.onkeyup = function(ev){
+        obj[ev.keyCode] = false;
+        if(Object.values(obj).every(item=>!item)){
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+</script>
+</body>
+</html>

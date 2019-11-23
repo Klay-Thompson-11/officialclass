@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+#ul {
+    width:150px;
+    height: 150px;
+    border:1px solid rgb(179, 145, 33);
+    display: none;
+    position:absolute;
+    top:0;
+    left:0;
+    border-radius: 100%;
+    overflow: hidden;
+    cursor: cell;
+}
+
+#ul li{
+    height:29px;
+    line-height: 29px;
+    text-align: center;
+    border-bottom:1px dashed red;
+}
+#ul li:hover{
+    background: yellow;
+    color:black;
+}
+   
+
+</style>
+</head>
+<body>
+    <ul id="ul">
+        <li>Wow!</li>
+        <li>You!</li>
+        <li>can!</li>
+        <li>really!</li>
+        <li>dance!</li>
+    </ul>
+
+<script>
+    /*
+        DOM0的方式
+        要阻止默认行为要知道是什么事件触发的这种行为
+
+            ev.returnValue = false;  去阻止默认行为（灵活）
+            return false
+            ev.preventDefault();  (事件绑定的时候使用或者returnValue)
+
+        oncontextmenu 鼠标右键
+    */
+
+    document.onkeydown = function(ev){
+        if(ev.keyCode === 32){
+            // console.log(ev);
+            // ev.returnValue = false;
+            return false;
+        }
+        return false;
+    }
+
+    document.oncontextmenu = function(ev){
+        ul.style.cssText = `display:block;top:${ev.clientY}px;left:${ev.clientX}px`;
+        return false;
+    }
+
+    ul.onclick = function(ev){
+        console.log(ev.target.innerHTML)
+        ev.stopPropagation();
+    }
+
+    document.onclick = function(){
+        ul.style.display = 'none';
+    }
+
+    /*
+    拖拽事件：
+         
+         三大事件组成：onmousedown
+                      onmousemove
+                      onmouseup
+
+        要先触发down，然后才能触发move和up
+    */
+
+    ul.onmousedown=function(ev){
+        let disX=ev.pageX-ul.offsetLeft;
+        //按下作用
+        let disY=ev.pageY-ul.offsetTop;
+        //点到盒子边的距离
+        document.onmousemove=function(ev){
+            ul.style.left=ev.pageX-disX+'px';
+            ul.style.top=ev.pageY-disY+'px';
+        }//移动的坐标
+        document.onmouseup=function(){
+            document.onmousemove=null;
+        }
+    }
+
+</script>
+</body>
+</html>
