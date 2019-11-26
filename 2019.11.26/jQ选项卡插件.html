@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+}
+.active{
+    background:lightpink;
+}
+#box{
+    width:400px;
+}
+#box div,#box2 div{
+    width:350px;
+    height:150px;
+    border:1px solid #000;
+    border-radius:5%;
+    text-align: center;
+    line-height: 125px;
+    box-shadow:1px 1px 1px 1px grey;
+    font-size: 20px;
+    color:black;
+    display: none;
+}
+#box div.show,#box2 div.show{
+    display: block;
+}
+button{
+    width:70px;
+    height:20px;
+    background: linen;
+    margin-left:15px;
+    border:1px solid grey;
+    border-radius:10%;
+    box-shadow:1px 1px grey;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+    </div>
+
+    <div id="box2"></div>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="tabs_x.0.js"></script>
+<script>
+    $('#box').tabs({
+        btns:['button1','button2','button3','...']
+    }).dialog(); //$.fn.extend
+
+</script>
+</body>
+</html>

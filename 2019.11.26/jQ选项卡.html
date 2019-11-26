@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .active{
+        background:lightgreen;
+    }
+    #box div{
+        width:250px;
+        height:200px;
+        border:1px dashed black;
+        display: none;
+    }
+    #box div.show {
+        display: block;
+    }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <button class="active">button1</button>
+        <button>button2</button>
+        <button>button3</button>
+        <div class="show">one</div>
+        <div>two</div>
+        <div>three</div>
+    </div>
+
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script>
+    let $box=$('#box');
+    let $btns=$box.find('button');
+    let $divs=$box.find('div');
+
+    $btns.click(function(){
+        $(this).addClass('active').siblings('button').removeClass('active');
+        $divs.eq($(this).index()).addClass('show').siblings('div').removeClass('show');
+    })
+    </script>
+</body>
+</html>
