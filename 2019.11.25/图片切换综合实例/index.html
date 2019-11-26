@@ -87,7 +87,6 @@
             font-size: 14px;
             color: #8e8e8e;
             line-height: 38px;
-            display: none;
         }
 
         #imgBox {
@@ -122,7 +121,7 @@
             filter: alpha(opacity=60);
             top: 130px;
             text-align: center;
-           
+
         }
 
         #imgBox a:nth-of-type(1) {
@@ -258,16 +257,7 @@
     <script type="text/javascript">
         let arrImg = ['img/img01.jpg', 'img/img02.jpg', 'img/img03.jpg', 'img/img04.jpg'];
         let arrText = ['文字描述一', '文字描述二', '文字描述三', '文字描述四'];
-        /*
-        <div id="imgBox">
-            <span>图片数量计算中……</span>
-            <img src="img/img01.jpg" id="pic">
-            <a href="javascript:void(0);" id="prev"><img src="img/prev.png" /></a>
-            <a href="javascript:void(0);" id="next"><img src="img/next.png" /></a>
-            <em></em>
-            <strong>图片文字加载中……</strong>
-        </div>
-        */
+
         const $imgBox = $('#imgBox'); //模块缓存
         const $span = $imgBox.find('span'); //getElementsByTagName
         const $prev = $imgBox.find('#prev');
@@ -278,7 +268,7 @@
         const $a = $h2.find('a');
         const $tanBox = $('#tanBox');
         const $span2 = $tanBox.find('span');
-       
+
 
         let len = arrImg.length;
         let num = 0;
@@ -286,11 +276,13 @@
         let onoff = true;
 
         $('a:eq(0)').click(function () {
+            $('#tabBox p').text('图片可以从最后一张跳转到第一张循环切换');
             $('a:eq(0)').addClass('active');
             $('a:eq(1)').removeClass('active');
             onoff = true;
         })
         $('a:eq(1)').click(function () {
+            $('#tabBox p').text('图片只能到最后一张或到第一张切换');
             $('a:eq(0)').removeClass('active');
             $('a:eq(1)').addClass('active');
             onoff = false;
@@ -303,8 +295,8 @@
             $pic.attr('src', arrImg[num]); //设置图片
         }
         init();
-         
-        
+
+
         $next.click(function () {
             if (onoff == true) {
                 num++;
@@ -312,27 +304,39 @@
                 init();
             } else {
                 num++;
-                if (num==len) {
-                    num=len-1;
-                    $tanBox.show();  
+                if (num == len) {
+                    $('#tanBox strong').text('已经到最后一张啦～');
+                    $tanBox.show();
                 }
+                num = len - 1;
                 init();
-                console.log(num); 
             }
 
         });
         $prev.click(function () {
-            num--;
-            num %= len;
-            if (num < 0) {
-                num = len - 1;
+            if (onoff == true) {
+                num--;
+                num %= len;
+                if (num < 0) {
+                    num = len - 1;
+                }
+                init();
+            } else {
+                num--;
+                if (num < 0) {
+                    num = len - 1;
+                    $('#tanBox strong').text('已经到第一张啦～');
+                    $tanBox.show();
+                }
+                num = 0;
+                init();
             }
-            init();
         })
-        $('#tanBox a').click(function(){
+
+        $('#tanBox a').click(function () {
             $tanBox.hide();
         })
-        $span2.click(function(){
+        $span2.click(function () {
             $tanBox.hide();
         })
     </script>
