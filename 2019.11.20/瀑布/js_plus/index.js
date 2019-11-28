@@ -14,16 +14,16 @@ class Tools {
         }
     }
 
-    throttling(cb,time){
-        let prevtime = 0;
-        return function(...arg){
-            let nowTime = +new Date;
-            if(nowTime - prevtime > time){
-                cb.call(this,...arg);
-            }
-            prevtime = nowTime;
-        }
-    }
+    // throttling(cb,time){
+    //     let prevtime = 0;
+    //     return function(...arg){
+    //         let nowTime = +new Date;
+    //         if(nowTime - prevtime > time){
+    //             cb.call(this,...arg);
+    //         }
+    //         prevtime = nowTime;
+    //     }
+    // }
     
     debounce(cb,time){
         let timer;
@@ -47,7 +47,7 @@ class Waterfall extends Tools{
         this.list = this.box.children; //li
         this.wh = window.innerHeight;//可视区的高度
         this.bodyT = this.box.offsetTop;//ul的定位距离
-        this.loading = document.getElementById('loading');
+        // this.loading = document.getElementById('loading');
         this.onoff = true;
     }
     api(url,cb){
@@ -59,12 +59,12 @@ class Waterfall extends Tools{
         });
     }
     render(){
-        this.onLd();
-        this.changeLoading();
+        // this.onLd();
+        // this.changeLoading();
         setTimeout(() => {
             this.api('./data.json',function(data){
-                this.offLd();
-                this.changeLoading();
+                // this.offLd();
+                // this.changeLoading();
                 data.forEach((d,i)=>{
                     let {index} = this.getMinIndex(this.list);
                     let div = this.create(d);
@@ -98,15 +98,15 @@ class Waterfall extends Tools{
         window.onscroll = this.debounce(fn,200);
         window.onresize = ()=> {this.wh = window.innerHeight}
     }
-    changeLoading(){
-        this.loading.style.display = this.onoff?'block':'none';
-    }
-    onLd(){
-        this.onoff = true;
-    }
-    offLd(){
-        this.onoff = false;
-    }
+    // changeLoading(){
+    //     this.loading.style.display = this.onoff?'block':'none';
+    // }
+    // onLd(){
+    //     this.onoff = true;
+    // }
+    // offLd(){
+    //     this.onoff = false;
+    // }
 }
 let w = new Waterfall('.body');
 w.render();
