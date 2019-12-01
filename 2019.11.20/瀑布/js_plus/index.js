@@ -6,7 +6,6 @@ class Tools {
                return item.scrollHeight;
             });
         }
-        console.log(obj);
         let min = Math.min(...obj);
         let index = obj.findIndex(item=>item===min);
         return {
