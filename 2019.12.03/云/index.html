@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="css/css.css" />
 </head>
-
 <body>
     <div id="box">
         <header id="head">
             <div id="top">
                 <h1 class="title">
-                    <a href="" title="云存储"><img src="./img/yun.png" alt=""><span>FK云存储</span> </a>
+                    <a href="" title=""><img src="./img/mouse.png" alt=""> </a>
                 </h1>
                 <div class="right">
                     <div class="user">
-                    <img src="" alt="" /><a href="javascript::">注册与登录</a>
+                        <span><img src="img/user-ico.jpg" alt="" /></span>
+                        <i></i>
                     </div>
                     <div class="gap"></div>
-                    <div class="set"><img src="./img/set.jpg" alt="" id="set"></div>
+                    <div class="set"></div>
                 </div>
             </div>
             <div id="nav">
                 <ul class="nav_left" onselectstart="return false;">
-                    <li id="download"><i></i>下载</li>
-                    <li id="share"><i></i>分享</li>
-                    <li id="moveto"><i></i>移动到</li>
+                    <li><i></i>下载</li>
+                    <li><i></i>分享</li>
+                    <li id="remove"><i></i>移动到</li>
                     <li id="rename"><i></i>重命名</li>
-                    <li id="delete"><i></i>删除</li>
+                    <li id="del"><i></i>删除</li>
                     <li id="create"><i></i>新建文件夹</li>
                     <li><i></i></li>
                 </ul>
@@ -47,23 +46,21 @@
             </div>
         </header>
         <section id="section">
-            <div class="tree-menu" onselectstart="return false;">
+            <div class="tree-menu fix" onselectstart="return false;">
                 <ul>
-                    <!-- <li>
+                    <li>
                         <div class="tree-title tree-ico open">
-                            <span><i></i>FK云存储</span>
+                            <span><i></i>微云</span>
                         </div>
-                        <ul>
+                        
+                    </li>
+                </ul>
+                        <!-- <ul>
                             <li>
                                 <div class="tree-title tree-ico close">
                                     <span><i></i>我的文档</span>
                                 </div>
                             </li>
-                            <li>
-                                    <div class="tree-title tree-ico close">
-                                        <span><i></i>我的代码</span>
-                                    </div>
-                                </li>
                             <li>
                                 <div class="tree-title tree-ico close">
                                     <span><i></i>我的音乐</span>
@@ -71,15 +68,15 @@
                             </li>
                             <li>
                                 <div class="tree-title tree-ico-none ">
-                                    <span><i></i>666</span>
+                                    <span><i></i>123</span>
                                 </div>
                             </li>
                         </ul>
-                    </li>  -->
+                    </li> -->
                     <!-- 以下 左tree 是展开 -->
-                     <!-- <li>
+                    <!-- <li>
                         <div class="tree-title tree-ico open">
-                            <span><i></i>FK云存储</span>
+                            <span><i></i>微云</span>
                         </div>
                         <ul>
                             <li>
@@ -145,8 +142,8 @@
                             </li>
                         </ul>
                     </li> -->
-                </ul>
-            </div> 
+                <!-- </ul> -->
+            </div>
             <div class="folder-content">
                 <div class="breadmenu">
                     <div class="checkall">
@@ -154,8 +151,8 @@
                     </div>
                     <div class="bread-nav" onselectstart="return false;">
                         <!-- 这个是操作的东西 -->
-                         <!-- <a href="javascript">FK云存储</a>
-							<span>我的文档</span>  -->
+                        <!-- <a href="javascript">微云</a>
+							<span>我的文档</span> -->
                     </div>
                 </div>
                 <div class="f-empty"></div>
@@ -174,17 +171,24 @@
                                 <span class="folder-name">JS基础课程</span>
                                 <input type="text" class="editor"/>
                                 <i class="checked"></i>
-                            </div>-->
-                    </div> 
-                    <div class="frame" id="frame"></div>
+                            </div> -->
+                    </div>
+                    <div class="kuang"></div>
                 </div>
             </div>
         </section>
-        <div class="model-tree">
+        <div class="modal-tree">
             <h2>选择存储位置</h2>
             <p class="folderName">我的文档</p>
             <div class="content">
-
+                    <ul id="model_list">
+                        <li>
+                            <div class="tree-title tree-ico open">
+                                <span><i></i>微云</span>
+                            </div>
+                            
+                        </li>
+                    </ul>
             </div>
             <div class="footer">
                 <input type="button" name="" class="cancel" value="取消">
@@ -196,14 +200,14 @@
         <!-- 弹框 -->
         <div id="tanbox">
             <div class="conf">
-                <i class="close-ico" id="X">X</i>
+                <i class="close-ico">X</i>
                 <h3 class="conf-title">删除文件</h3>
                 <div class="conf-content">
                     确定要删除文件吗？
                 </div>
                 <div class="conf-btn">
-                    <a href="javascript:;" id="yes">确定</a>
-                    <a href="javascript:;" id="no">取消</a>
+                    <a href="javascript:;">确定</a>
+                    <a href="javascript:;">取消</a>
                 </div>
             </div>
         </div>
@@ -217,14 +221,78 @@
         </div>
     </div>
     <script src="js/sql/data.js"></script>
-    <script src="js/tools.js"></script>
     <script src="js/jquery.min.js"></script>
-    <script src="js/navleft/navleft.js"></script>
-    <script src="js/folders/folders.js"></script>
+    <script src="js/tools.js"></script>
     <script src="js/breadmenu/breadmenu.js"></script>
+    <script src="js/folders/folders.js"></script>
+    <script src="js/navleft/navleft.js"></script>
+    <script src="js/kuang/kuang.js"></script>
     <script src="js/tree/tree.js"></script>
-    <!-- <script src="js/newfolder/newfolder.js"></script> -->
-    <script src="js/select/select.js"></script>
+    <script>
+       
+        /*
+            如果你把云做好，你就走进了顺利就业的那20%的人群中。
+            70%
+        */
+        /*
+            [
+                {
+                    name:'微云',
+                    children:[
+                        {
+                            name:'我的音乐',
+                            
+                        },
+                        {
+                            name:'我的文档'，
+                            children:[
+                                {
+                                    name:'我的资源',
+                                    children:[]
+                                },{},{}
+                            ]
+                        }
+                    ]
+                }
+            ]
+
+            {
+                "0":{
+                    id:0,
+                    name:'微云',
+                    pid:-1
+                },
+                "1":{
+                    id:1,
+                    name:'我的音乐',
+                    pid:0
+                },
+                "2":{
+                    id:2,
+                    name:'我的文档',
+                    pid:0
+                },
+                "3":{
+                    id:3,
+                    name:'我的爱好',
+                    pid:2
+                },
+                "4":{
+                    id:4,
+                    name:'我的小心情',
+                    pid:3
+                }
+            }
+        */
+        
+        /*
+            MVC:
+                M -> Model    数据
+                V -> View     视图
+                C -> controller  控制器
+        */
+
+    </script>
 </body>
 
 </html>
