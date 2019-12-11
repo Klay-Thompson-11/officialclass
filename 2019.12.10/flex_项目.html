@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:300px;
+    height:30px;
+    border:1px solid #000;
+    display: flex;
+
+}
+
+span{
+    flex:1;
+    height:30px;
+    background: orange;
+}
+
+span:nth-of-type(1){
+    width:50px;
+    height:30px;
+    background: orange;
+} 
+ span:nth-of-type(2){
+    width:50px;
+    height:30px;
+    background:firebrick;
+    align-self:flex-end;
+    flex:1;
+    order:-1;
+    background:firebrick;
+} 
+ span:nth-of-type(3){
+    width:50px;
+    height:30px;
+    background: orange;
+}
+</style>
+</head>
+<body>
+    <div id="box">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+</body>
+</html>
