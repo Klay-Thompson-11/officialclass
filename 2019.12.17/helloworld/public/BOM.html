@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height:100px;
+}
+</style>
+</head>
+<body style="height:3000px">
+    <button id="hash">改hash</button>
+    <button id="search">改search</button>
+    <div id="box"></div>
+<script>
+      
+    let i = 0;
+    hash.onclick = function(){
+        window.location.hash = 'a=y'+i++;  //写操作
+        console.log(window.location.hash);//读操作
+    }
+
+    window.onhashchange = function(){
+        console.log(1);
+    }
+
+    // search.onclick = function(){
+    //     window.location.search = 'h=i'+i++;
+    //     console.log(window.location.search);//读操作
+    // }
+
+
+    // FF:Firefox
+    //Chrome:Chrome
+    if(/chrome/i.test(window.navigator.userAgent) && /windows/i.test(window.navigator.userAgent)){
+        box.style.background = 'red';
+    }else if(/firefox/i.test(window.navigator.userAgent)){
+        box.style.background = 'green';
+    }else if(/iphone/i.test(window.navigator.userAgent)){
+        box.style.background = 'yellow';
+    }else if(/android/i.test(window.navigator.userAgent)){
+        box.style.background = 'skyblue';
+    }
+
+    
+
+
+    document.onclick = function(){
+        // console.log( window.pageYOffset )
+        // document.documentElement.scrollTop = 0;
+        // window.scrollTo(0,0);
+        // console.log(window.location);
+        // window.location.href = 'http://www.baidu.com';
+        // console.log(window.navigator.userAgent)
+    }
+
+    // window.location.href = 'http://www.baidu.com'; //一打开页面就跳转到别的页面
+
+</script>
+</body>
+</html>
