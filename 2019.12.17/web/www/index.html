@@ -18,17 +18,17 @@
     <!--已留-->
     <div class="commentOn">
         <div class="messList" id="div1" style="height:502px">
-            <!-- <div class="reply">
+            <div class="reply">
                 <p class="replyContent"></p>
                 <p class="operation">
-                    <span class="replyTime">2018-09-08 16:37:60</span>
+                    <span class="replyTime"></span>
                     <span class="handle">
                         <a href="javascript:;" class="top">0</a>
                         <a href="javascript:;" class="down_icon">0</a>
                         <a href="javascript:;" class="cut">删除</a>
                     </span>
                 </p>
-            </div> -->
+            </div>
         </div>
         <div class="page" id="page">
             <a href="#" class="active">1</a>
@@ -95,15 +95,15 @@
                     <p class="operation">
                         <span class="replyTime">${year}-${toDou(mon)}-${toDou(date)} ${toDou(h)}:${toDou(m)}:${toDou(s)}</span>
                         <span class="handle">
-                            <a href="javascript:;" class="top">0</a>
-                            <a href="javascript:;" class="down_icon">0</a>
-                            <a href="javascript:;" class="cut">删除</a>
+                            <a href="javascript:;" class="top" id="top">0</a>
+                            <a href="javascript:;" class="down_icon" id="down_icon">0</a>
+                            <a href="javascript:;" class="cut" id="cut">删除</a>
                         </span>
                     </p>
             </div>
         ` + div1.innerHTML;
     }
-
+   
 </script>
 </body>
 </html>
