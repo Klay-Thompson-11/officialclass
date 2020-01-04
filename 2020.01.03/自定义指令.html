@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-color="'green'">
+            {{val}}
+        </div>
+        <input type="text" v-focus   value="大家好"/>
+        <hr/>
+        <abc></abc>
+    </div>
+
+    <template id="abc">
+        <div v-size="20">2020-01-03</div>
+    </template>
+<script src="./vue.js"></script>
+<script>
+
+    /*
+        Vue.directive('xxx', {
+            bind: function () {},
+            inserted: function () {},
+            update: function () {},
+            componentUpdated: function () {},
+            unbind: function () {}
+        })
+    */
+
+    Vue.directive('color',function(el,val){
+        el.style.color = val.value?val.value:'red';
+    });
+
+    Vue.directive('focus',{
+        
+        inserted(el){
+            // Vue.nextTick(()=>{
+            //     el.select();
+            // })
+            el.select();
+        }
+    });
+    new Vue({
+        el:'#app',
+        data:{
+            val:'2020年1月3日'
+        },
+        components:{
+            abc:{
+                template:'#abc',
+                directives:{
+                    size(el,val){
+                        el.style.fontSize = val.value?val.value+'px':'10px';
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

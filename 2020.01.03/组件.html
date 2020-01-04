@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <aaa></aaa>
+        <bbb></bbb>
+        <ccc></ccc>
+    </div>
+
+    <template id="ccc">
+        <div>模板{{num}}</div>
+    </template>
+<script src="./vue.js"></script>
+<script>
+    const bbb = {
+        template:`<div>第一个子组件</div>`
+    }
+
+    const aaa = {
+        template:`<div>
+                <h5>第二个子组件</h5>
+                <bbb></bbb>
+            </div>`,
+        components:{
+            //局部注册的只能在局部组件中使用
+            bbb
+        }
+    }
+
+    const ccc = {
+        template:'#ccc',
+        data(){
+            return {
+                num:100
+            }
+        }
+    }
+
+    //全局注册在哪里用都可以
+    
+    Vue.component('aaa',aaa);
+    Vue.component('bbb',bbb);
+    Vue.component('ccc',ccc);
+
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>

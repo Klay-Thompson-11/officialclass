@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>父元素</h1>
+        <button @click="++num">父元素按钮{{num}}</button>
+        <hr />
+        <!-- 使用组件 -->
+        <temp1 
+            :yourname="name" 
+            :nn="num"
+        ></temp1>
+    </div>
+
+    <template id="temp1">
+        <div>
+            <h5>子元素</h5>
+            <button>子按钮{{nn+1}}</button>
+            <p>我想说:{{yourname}}</p>
+        </div>
+    </template>
+    
+<script src="./vue.js"></script>
+<script>
+    
+
+    //定义组件
+    const temp1 = {
+        template:'#temp1',
+        // props:['nn']
+        //既可以是数组，也可以是对象，对象可以对属性进行描述
+        props:{
+            nn:{
+                //如果数据不是指定的数据类型，那么就报错
+                type:Number,
+                default:0//默认值
+            },
+            yourname:{
+                //是否为必填项
+                required:true,
+                validator: function (value) {
+                    return /[\u4e00-\u9fa5]+/.test(value)
+                }
+            }
+        }
+    } 
+  
+    new Vue({
+        el:'#app',
+        data:{
+            num:0,
+            name:'多捞哦'
+            // name:222
+        },
+        components:{
+            //局部注册组件
+            temp1
+        }
+    })
+</script>
+</body>
+</html>
