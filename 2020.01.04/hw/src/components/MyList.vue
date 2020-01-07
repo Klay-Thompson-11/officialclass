@@ -57,7 +57,6 @@ export default {
         this.off = false;
         return;
       }
-      console.log(ev.target.value);
       
       this.$emit("reval",ev.target.value,key);
       this.myval = "";

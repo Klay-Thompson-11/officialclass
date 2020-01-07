@@ -13,7 +13,7 @@
 				    :checked="istrue"
                     class="toggle-all" 
                     type="checkbox"
-					@click="qx" 
+					@click="checkedall" 
                 >
                    <Mylist 
                    :cary="setAry"
@@ -24,7 +24,7 @@
             </section>
           <!-- <Myfooter/> -->
 		   <Myfooter
-		      :cwxz="wxz"
+		      :cunchecked="unchecked"
 			  @cfn="chooseFn"
 		   />
         </div>
@@ -68,7 +68,6 @@ import Myfooter from './components/Myfooter'
        },
        //双击事件
        repFn(val,key){ 
-         console.log(val);
           
         this.ary[key].txt=val;
        },
@@ -83,19 +82,17 @@ import Myfooter from './components/Myfooter'
         })
 	  },
 	  chooseFn(val){
-		  console.log(val);
 		  
 		 this.val1 = val 
 	  },
-	  qx(ev){
-		  console.log(ev.target.checked);
+	  checkedall(ev){
 		  
 		  this.ary.forEach(item=>
 		  item.checked=ev.target.checked)
 	  }
 	},
 	 computed: {
-                wxz() {
+                unchecked() {
                     return this.ary.filter(item => !item.checked).length
 				},
 				 setAry() {

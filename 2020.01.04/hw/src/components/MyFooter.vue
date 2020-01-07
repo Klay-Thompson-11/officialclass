@@ -1,7 +1,7 @@
 <template>
      <footer class="footer">
                 <span class="todo-count">
-                    <strong>{{cwxz}}</strong>
+                    <strong>{{cunchecked}}</strong>
                     <span>条未选中</span>
                 </span>
                 <ul class="filters">
@@ -14,7 +14,7 @@
 
 <script>
     export default {
-        props:['cwxz']
+        props:['cunchecked']
         ,
         data(){
             return{
