@@ -1,0 +1,62 @@
+<template>
+    <div>
+        <p>请登录</p>
+        用户名:<input v-model="uname" type="text"/>
+        <br/>
+        密码:<input v-model="pass" type="password"/>
+        <button @click="login">登录</button>
+    </div>
+</template>
+
+<script>
+    export default {
+        data(){
+            return {
+                uname:'',
+                pass:''
+            }
+        },
+        methods:{
+            login(){
+                const {uname,pass} = this;
+                setTimeout(() => {
+                    if(uname === 'abc' && pass=== '123'){
+                        //跳转
+                        // this.$router.push('/');
+                        // this.$router.push({
+                        //     path:'/',   //  ?name=abc
+                        //     query:{
+                        //         name:'abc'
+                        //     }
+                        // });
+
+
+                        this.$router.push({
+                            name:'home',
+                            params:{
+                                un:'abc'
+                            }
+                        });
+
+                        //替换
+                        // this.$router.replace({
+                        //     path:'/',   //  ?name=abc
+                        //     // name:'home',
+                        //     // params:{
+                        //     //     name:'abc'   // /name/abc
+                        //     // }
+                        //     // query:{
+                        //     //     name:'abc'
+                        //     // }
+                        // });
+                    }
+                }, 2000);
+                
+            }
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
