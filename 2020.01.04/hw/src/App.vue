@@ -1,6 +1,5 @@
 <template>
   <div>
-{{ary}}
 <section class="todoapp" id="box">
         <div>
            <MyHeader
@@ -22,7 +21,6 @@
                    />
                
             </section>
-          <!-- <Myfooter/> -->
 		   <Myfooter
 		      :cunchecked="unchecked"
 			  @cfn="chooseFn"
@@ -124,7 +122,7 @@ import Myfooter from './components/Myfooter'
   }
 </script>
 
-<style lang="scss">
+<style>
 html,
 body {
 	margin: 0;
