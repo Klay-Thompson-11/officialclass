@@ -13,23 +13,14 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: () => import( '../views/About.vue'),
-  },
-  {
-    path: '/public',
-    name: 'public',
-    component: () => import('../views/public.vue'),
-  },
-
+    component: () => import( '../views/About.vue')
+  }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-});
-
-
-
+})
 
 export default router

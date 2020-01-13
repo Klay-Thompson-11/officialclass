@@ -8,28 +8,33 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
   },
   {
     path: '/about',
     name: 'about',
     component: () => import( '../views/About.vue'),
-  },
-  {
-    path: '/public',
-    name: 'public',
-    component: () => import('../views/public.vue'),
-  },
-
+    children:[
+      {
+        path:'vuex1',
+        component: () => import('../views/vuex_1.vue')
+      },
+      {
+        path:'vuex_actions',
+        component: () => import('../views/vuex_2_actions.vue')
+      },
+      {
+        path:'vuex_getters',
+        component: () => import('../views/vuex_3_getters.vue')
+      },
+    ]
+  }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-});
-
-
-
+})
 
 export default router
